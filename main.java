@@ -11,7 +11,7 @@ int sadd,eadd,numOfpartitions;
         System.out.println("Please enter the number of partitions : ");
 numOfpartitions=input.nextInt();
 
-Partition[] meomry=new Partition[numOfpartitions];
+Partition[] memory = new Partition[numOfpartitions];
 
 for(int i=0;i<numOfpartitions;i++){
 
@@ -33,7 +33,7 @@ meomry[i]=new partition(partitionSize,sadd,eadd);
  String approch=input.next();
 
        printing();
-	   report();
+	   report(memory);
     } //end main
 
     public static void printing(){
@@ -49,8 +49,8 @@ meomry[i]=new partition(partitionSize,sadd,eadd);
         }//end printing method
 
 
-     public static void report() { // wil recieve Partition[] p 
-		int m=10;
+     public static void report(Partition[] p) { 
+		//int m=10;
 		try {
         BufferedWriter reportFile = new BufferedWriter(new FileWriter("report.txt") );
             
