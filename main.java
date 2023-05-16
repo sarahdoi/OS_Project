@@ -1,6 +1,16 @@
+import java.util.Scanner;
+
 public class main {
     static int memorySize=4;
     public static void main(String[] args) {
+    Scanner input = new Scanner(System.in); 
+
+
+        System.out.println("Please enter the number of partitions : ");
+
+
+
+
        printing();
     } 
 
@@ -15,4 +25,10 @@ public class main {
         pname=pname+"]";
         System.out.println(pname);
         }
+        public static void report(){
+
+
+        }
+
+
 }
