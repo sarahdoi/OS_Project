@@ -1,80 +1,47 @@
-public class Partition {
-	private int startAddress;
-	private int endAddress;
-   
-   private int partition;
-   private int fragmentSize;
-	private boolean isPartitionStatusFree;
-   
-	private String processID;
-	private int processSize;
 
-	public Partition(int startAddress, int endAddress, int partition) {
-		this.startAddress = startAddress;
-		this.endAddress = endAddress;
-		this.partition = partition;
-		this.fragmentSize = -1;
+public class Partition{
 
-		this.isPartitionStatusFree = true;
-		this.processID = "null";
-	}
+private int Size, Sadd, Eadd,InternalFrag,processSize;
+private String Pid,Status;
 
-	/* <========= Setters and Getters =========> */
+public Partition(int size, int sadd, int eadd){
 
-	public int getStartAddress() {
-   return startAddress;
-   }
-
-	public void setStartAddress(int startAddress) {
-   this.startAddress = startAddress;
-   }
-
-	public int getEndAddress() {
-		return endAddress;
-	}
-
-	public void setEndAddress(int endAddress) {
-		this.endAddress = endAddress;
-	}
-
-	public int getFragmentSize() {
-		return fragmentSize;
-	}
-
-	public void setFragmentSize(int fragmentSize) {
-		this.fragmentSize = fragmentSize;
-	}
-
-	public int getPartition() {
-		return partition;
-	}
-
-	public void setPartition(int partition) {
-		this.partition = partition;
-	}
-
-	public boolean getIsPartitionStatusFree() {
-		return isPartitionStatusFree;
-	}
-
-	public void setIsPartitionStatusFree(boolean isPartitionStatusFree) {
-		this.isPartitionStatusFree = isPartitionStatusFree;
-	}
-
-	public String getProcessID() {
-		return processID;
-	}
-
-	public void setProcessID(String processID) {
-		this.processID = processID;
-	}
-
-	public int getProcessSize() {
-		return processSize;
-	}
-
-	public void setProcessSize(int processSize) {
-		this.processSize = processSize;
-	}
-
+Size=size;
+Sadd=sadd;
+Eadd=eadd;
+InternalFrag=-1;//intilize since it won't be given by the user
+Pid="NULL";//intilize since it won't be given by the user
+Status="Free";//intilize since it won't be given by the user
 }
+
+public Partition(){}
+
+//=========Getters==================
+public int getSize(){ return Size;}
+
+public int getSadd(){ return Sadd;}
+
+public int getEadd(){ return Eadd;}
+
+public String getPid(){ return Pid;}
+
+public String getStatus(){ return Status;}
+
+public int getInternalFrag(){ return InternalFrag;}
+
+
+//================== Setters=============
+
+public void setSize(int s){Size=s;}
+
+public void setSadd(int s){Sadd=s;}
+
+public void setEadd(int e){Eadd=e;}
+
+public void setPid(String id){Pid=id;}
+
+public void setStatus(String status){Status=status;}
+
+public void setInternalFrag(int internalfrag){InternalFrag=internalfrag;}
+
+}//end of class
