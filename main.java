@@ -8,7 +8,7 @@ public class main {
 
 int sadd,eadd,numOfpartitions;
 
-        System.out.println("Please enter the number of partitions : ");
+System.out.println("Please enter the number of partitions : ");
 numOfpartitions=input.nextInt();
 
 Partition[] memory = new Partition[numOfpartitions];
@@ -32,18 +32,31 @@ memory[i]=new Partition(partitionSize,sadd,eadd);
  String approach=input.next();
 
  int selection;
+ String pname;
+ int pSize;
  do{
-     System.out.println("Please Select an Option \n[1] Allocate a block of memory\n[2] De-allocate a block memory \n[3] Report details\n[-1] Exit from program");
+      System.out.println("Please Select an Option \n[1] Allocate a block of memory\n[2] De-allocate a block memory \n[3] Report details\n[-1] Exit from program");
      selection=input.nextInt();
+
+
+ 
+
+
      switch(selection){
          case 1: 
-         allocate();
+         System.out.println("Please enter a process name");
+         pname=input.next();
+         System.out.println("Please enter a process size");
+         pSize=input.nextInt();
+         allocate(memory,pname,pSize,numOfpartitions,approach);
          break;
          case 2:
-         //deallocate();
+         System.out.println("Please enter a process name");
+         pname=input.next();
+         deallocate(pname,memory);
          break;
          case 3:
-         //report();
+         report(memory);
          break;
          case -1:
          System.out.print("Thank you");
@@ -58,8 +71,8 @@ memory[i]=new Partition(partitionSize,sadd,eadd);
 
     public static void printing(Partition[] p){
         String pname="[";
-        for(int j=0;j<memorySize;j++){
-        if (p[j].getStatus().equalsIgnoreCase("Free"))
+        for(int j=0;j<p.length;j++){
+        if (p[j].getStatus().equalsIgnoreCase("allocated"))
         pname=pname+p[j].getPid()+" | ";
         else
         pname=pname+"H | ";
@@ -69,32 +82,43 @@ memory[i]=new Partition(partitionSize,sadd,eadd);
         }
 
 //end printing method
-public static void allocate(Partition[] p,String processId,int processSize){
+public static void allocate(Partition[] p,String processId,int processSize,int numOfpartitions,String approach){
     boolean full= true;
     boolean notExist =true;
-   for(int i=0;i<memorySize;i++)
+    int partitionIndex=-1;
+   for(int i=0;i<numOfpartitions;i++)
         if(p[i].getStatus().equals("Free")){
             full=false;
         }
     if(full)
     System.out.print("The memory is full");
     else{
-        for(int j=0;j<memorySize;j++)
+        for(int j=0;j<numOfpartitions;j++)
             if(p[j].getPid().equals(processId)){
+                System.out.print("This process is already exist");
                 notExist=false;
             }
         if(notExist){
         switch(approach){
-        case 1:
-        firstFit( p,processId, processSize);
+        case "F":
+        partitionIndex=firstFit(p,processId, processSize);
         break;
-        case 2:
-        bestFit(p,processId,processSize);
+        case "B":
+        partitionIndex=bestFit(p,processId,processSize);
         break;
-        case 3:
-        worstFit(p,processId, processSize);
+        case "W":
+        partitionIndex=worstFit(p,processId, processSize);
         break;
     }
+    if(partitionIndex!=-1){
+        p[partitionIndex].setPid(processId);
+        p[partitionIndex].setStatus("Allocated");
+        p[partitionIndex].setProcessSize(processSize);
+        p[partitionIndex].setInternalFrag(p[partitionIndex].getSize()-p[partitionIndex].getProcessSize());
+
+        
+    }
+    printing(p);
 }
 
     }
@@ -106,19 +130,19 @@ public static int worstFit(Partition[] p,String processId,int processSize){
     while(p[large].getStatus().equalsIgnoreCase("allocated")){
     large++;
     }
-    for(int k=large+1;k<memorySize-1;k++)
+    for(int k=large+1;k<p.length;k++)
     {
     if(p[k].getStatus().equalsIgnoreCase("Free"))
     if(p[large].getSize()<p[k].getSize()&& p[k].getSize()>=processSize)
     large=k;
     found=true;
     }
-    if(found||p[large].getSize()>=processSize){
-    p[large].setPid(processId);
-    p[large].setProcessSize(processSize);
+    if(found && p[large].getSize()>=processSize){
+    return large;
     }
     else {
-        System.out.println("the process size is larger than any free partion in the memory");
+        System.out.println("the process size is larger than any free partition in the memory");
+        return -1;
 
     }
 }
@@ -127,6 +151,7 @@ public static int worstFit(Partition[] p,String processId,int processSize){
 
         
 public static int firstFit(Partition[] p,String processId,int processSize){
+   
 for(int i=0; i<p.length;i++){
 Partition pp=p[i];
 if(p[i].getStatus().equals("Free")&&pp.getSize()>=processSize){
@@ -166,7 +191,7 @@ boolean found=false;
 }
 if(!found)
     System.out.println("Process not found!!!!");
-
+printing(p);
 } //end method deallocate
 
 
