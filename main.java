@@ -2,14 +2,35 @@ import java.util.Scanner;
 import java.io.*;
 
 public class main {
-    static int memorySize=4;
+    //static int memorySize=4;
     public static void main(String[] args) {
     Scanner input = new Scanner(System.in); 
 
+int sadd,eadd,numOfpartitions;
 
         System.out.println("Please enter the number of partitions : ");
+numOfpartitions=input.nextInt();
 
+Partition[] meomry=new Partition[numOfpartitions];
 
+for(int i=0;i<numOfpartitions;i++){
+
+ System.out.println("Please enter the size of partition : "+i+1+" in KB");
+int partitionSize=input.nextInt();
+
+if(i==0){
+    sadd=0;
+}
+else{
+    sadd=meomry[i-1].getEadd()+1;//if it's not the first process then it will be stored after the ending address
+}
+eadd=sadd + partitionSize -1;
+
+meomry[i]=new partition(partitionSize,sadd,eadd);
+}
+ System.out.println("Please enter the allocation approch:
+ [ First-fit (F), Best-fit(B), or Worst-fit (W) ]");
+ String approch=input.next();
 
        printing();
 	   report();
