@@ -15,7 +15,7 @@ Partition[] memory = new Partition[numOfpartitions];
 
 for(int i=0;i<numOfpartitions;i++){
 
- System.out.println("Please enter the size of partition : "+i+1+" in KB");
+ System.out.println("Please enter the size of partition : "+(i+1)+" in KB");
 int partitionSize=input.nextInt();
 
 if(i==0){
