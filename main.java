@@ -31,27 +31,102 @@ memory[i]=new Partition(partitionSize,sadd,eadd);
  System.out.println("Please enter the allocation approch:[ First-fit (F), Best-fit(B), or Worst-fit (W) ]");
  String approach=input.next();
 
-       printing();
-	   report(memory);
+ int selection;
+ do{
+     System.out.println("Please Select an Option \n[1] Allocate a block of memory\n[2] De-allocate a block memory \n[3] Report details\n[-1] Exit from program");
+     selection=input.nextInt();
+     switch(selection){
+         case 1: 
+         allocate();
+         break;
+         case 2:
+         //deallocate();
+         break;
+         case 3:
+         //report();
+         break;
+         case -1:
+         System.out.print("Thank you");
+         break;
+         default:
+         System.out.print("please select a valid input");
+     }
+ }
+ while(selection!=-1);
+	 
     } //end main
 
-    public static void printing(){
+    public static void printing(Partition[] p){
         String pname="[";
-        for(int j=0;j<4;j++){
-        // if (memory[j].getStatus().equals("Free"))
-        // pname=pname+memory[j].getPID()+" | ";
-        // else
+        for(int j=0;j<memorySize;j++){
+        if (p[j].getStatus().equalsIgnoreCase("Free"))
+        pname=pname+p[j].getPid()+" | ";
+        else
         pname=pname+"H | ";
         }
         pname=pname+"]";
         System.out.println(pname);
-        }//end printing method
+        }
 
+//end printing method
+public static void allocate(Partition[] p,String processId,int processSize){
+    boolean full= true;
+    boolean notExist =true;
+   for(int i=0;i<memorySize;i++)
+        if(p[i].getStatus().equals("Free")){
+            full=false;
+        }
+    if(full)
+    System.out.print("The memory is full");
+    else{
+        for(int j=0;j<memorySize;j++)
+            if(p[j].getPid().equals(processId)){
+                notExist=false;
+            }
+        if(notExist){
+        switch(approach){
+        case 1:
+        firstFit( p,processId, processSize);
+        break;
+        case 2:
+        bestFit(p,processId,processSize);
+        break;
+        case 3:
+        worstFit(p,processId, processSize);
+        break;
+    }
+}
+
+    }
+}
+
+public static int worstFit(Partition[] p,String processId,int processSize){
+    int large =0;
+    boolean found=false;
+    while(p[large].getStatus().equalsIgnoreCase("allocated")){
+    large++;
+    }
+    for(int k=large+1;k<memorySize-1;k++)
+    {
+    if(p[k].getStatus().equalsIgnoreCase("Free"))
+    if(p[large].getSize()<p[k].getSize()&& p[k].getSize()>=processSize)
+    large=k;
+    found=true;
+    }
+    if(found||p[large].getSize()>=processSize){
+    p[large].setPid(processId);
+    p[large].setProcessSize(processSize);
+    }
+    else {
+        System.out.println("the process size is larger than any free partion in the memory");
+
+    }
+}
 
    
 
         
-public static int first(Partition[] p,int processSize){
+public static int firstFit(Partition[] p,String processId,int processSize){
 for(int i=0; i<p.length;i++){
 Partition pp=p[i];
 if(p[i].getStatus().equals("Free")&&pp.getSize()>=processSize){
@@ -60,20 +135,19 @@ return -1;}//end loop
 return -1;
 }//end method first
 
-        public static int Best(Partition[] p,int processSize){
-int best=-1;
-int smallest=10000000;  //or Integer.max();
-for(int i=0; i<p.length;i++){
-Partition pp=p[i];
-if(pp.getStatus().equals("Free")&&pp.getSize()>=processSize){
-int frag=pp.getSize()-processSize;
-if(frag<=smallest){
-best=i;
-smallest=frag;}
-}
-}//end loop
-return best;
-}//end method Best
+public static int bestFit(Partition[] p,String processId,int processSize){
+    int best=-1;
+    int smallest=10000000;  //or Integer.max();
+    for(int i=0; i<p.length;i++){
+    Partition pp=p[i];//p pp=p[i];//
+    if(pp.getStatus().equals("Free")&&pp.getSize()>=processSize){
+    int frag=pp.getSize()-processSize;
+    if(frag<=smallest){
+    best=i;
+    smallest=frag;}
+    }
+    }//end loop
+    return best;}//end method Best
 
 public static void deallocate(String pid, Partition[] p){
 
