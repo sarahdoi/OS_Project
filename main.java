@@ -49,43 +49,48 @@ meomry[i]=new partition(partitionSize,sadd,eadd);
         }//end printing method
 
 
-    public static void report() { // wil recieve Partition[] p 
+     public static void report() { // wil recieve Partition[] p 
 		int m=10;
 		try {
         BufferedWriter reportFile = new BufferedWriter(new FileWriter("report.txt") );
             
-		System.out.println("Your memory partitions detailes : ");
+		System.out.println("Your memory partitions details : ");
 			
 			
-	     for (int i=0 ; i<m ; i++) { //Loop display each partition deatiles
-         System.out.println("Partion" + (i+1) + " :\n");
-		 reportFile.write("Partion" + (i+1) + " :\n");
+	     for (int i=0 ; i<m ; i++) { //Loop display each partition details
+         System.out.println("Partion " + (i+1) + " :\n");
+		 reportFile.write("Partion " + (i+1) + " :\n");
 		 
-		 System.out.println("Status : " + getStatus() );
-		 reportFile.write("Status : " + getStatus());
+		 /*
+		 System.out.println("Status : " + partition[i].getStatus() );
+		 reportFile.write("Status : " + partition[i].getStatus()   );
 		 
-		 System.out.println("Size : " + getSize()   );
-		 reportFile.write("Status : " + getSize());
+		 System.out.println("Size : " + partition[i].getSize()   );
+		 reportFile.write("Size : " + partition[i].getSize()   );
 		 
-		 System.out.println("Starting Address : " + getSadd() );
-		 reportFile.write("Status : " + getSadd());
+		 System.out.println("Starting Address : " +  partition[i].getSadd() );
+		 reportFile.write("Starting Address : " + partition[i].getSadd()    );
 		 
-		 System.out.println("Ending Address : " + getEadd() );
-		 reportFile.write("Status : " + getEadd() );	 
+		 System.out.println("Ending Address : " +  partition[i].getEadd() );
+		 reportFile.write("Ending Address : " + partition[i].getEadd()    );	 
 		 
-		 System.out.println("Process ID : " + getPid() );
-		 reportFile.write("Status : " + getPid() );	 
+		 System.out.println("Process ID : " + partition[i].getPid() );
+		 reportFile.write("Process ID : " +  partition[i].getPid()  );	 
 		 
-		 System.out.println("Internal fragmentation size : " + getInternalFrag() );
-		 reportFile.write("Status : " + getInternalFrag());
+		 System.out.println("Internal fragmentation size : " +  partition[i].getInternalFrag() );
+		 reportFile.write("Internal fragmentation size : " +  partition[i].getInternalFrag()   );
+		 */
         }//end for
-reportFile.flush();
-reportFile.close();
+		
+           reportFile.flush();
+           reportFile.close();
+		   
            }catch( IOException e ) {
 			 e.printStackTrace(); 
 			}//end catch
 			
 	}//end method report
+
         
 public static int first(Partiton[] p,int processSize){
 for(int i=0; i<Partiton.length;i++){
