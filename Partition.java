@@ -29,6 +29,8 @@ public String getStatus(){ return Status;}
 
 public int getInternalFrag(){ return InternalFrag;}
 
+public int getProcessSize(){ return processSize;}
+
 
 //================== Setters=============
 
@@ -44,4 +46,5 @@ public void setStatus(String status){Status=status;}
 
 public void setInternalFrag(int internalfrag){InternalFrag=internalfrag;}
 
+public void setProcessSize(int processSize){this.processSize=processSize;}
 }//end of class
