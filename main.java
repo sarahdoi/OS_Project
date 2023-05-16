@@ -131,9 +131,10 @@ for(int i=0; i<p.length;i++){
 Partition pp=p[i];
 if(p[i].getStatus().equals("Free")&&pp.getSize()>=processSize){
     return i;}
-return -1;}//end loop
+}//end loop
 return -1;
 }//end method first
+
 
 public static int bestFit(Partition[] p,String processId,int processSize){
     int best=-1;
@@ -148,6 +149,8 @@ public static int bestFit(Partition[] p,String processId,int processSize){
     }
     }//end loop
     return best;}//end method Best
+
+  
 
 public static void deallocate(String pid, Partition[] p){
 
@@ -179,25 +182,25 @@ public static void report(Partition[] p) {
      System.out.println("Partion " + (i+1) + " :\n");
      reportFile.write("Partion " + (i+1) + " :\n");
      
-     /*
-     System.out.println("Status : " + partition[i].getStatus() );
-     reportFile.write("Status : " + partition[i].getStatus()   );
      
-     System.out.println("Size : " + partition[i].getSize()   );
-     reportFile.write("Size : " + partition[i].getSize()   );
+     System.out.println("Status : " + p[i].getStatus() );
+     reportFile.write("Status : " + p[i].getStatus()   );
      
-     System.out.println("Starting Address : " +  partition[i].getSadd() );
-     reportFile.write("Starting Address : " + partition[i].getSadd()    );
+     System.out.println("Size : " + p[i].getSize()   );
+     reportFile.write("Size : " + p[i].getSize()   );
      
-     System.out.println("Ending Address : " +  partition[i].getEadd() );
-     reportFile.write("Ending Address : " + partition[i].getEadd()    );	 
+     System.out.println("Starting Address : " +  p[i].getSadd() );
+     reportFile.write("Starting Address : " + p[i].getSadd()    );
      
-     System.out.println("Process ID : " + partition[i].getPid() );
-     reportFile.write("Process ID : " +  partition[i].getPid()  );	 
+     System.out.println("Ending Address : " +  p[i].getEadd() );
+     reportFile.write("Ending Address : " + p[i].getEadd()    );	 
      
-     System.out.println("Internal fragmentation size : " +  partition[i].getInternalFrag() );
-     reportFile.write("Internal fragmentation size : " +  partition[i].getInternalFrag()   );
-     */
+     System.out.println("Process ID : " + p[i].getPid() );
+     reportFile.write("Process ID : " +  p[i].getPid()  );	 
+     
+     System.out.println("Internal fragmentation size : " +  p[i].getInternalFrag() );
+     reportFile.write("Internal fragmentation size : " +  p[i].getInternalFrag()   );
+     
     }//end for
     
        reportFile.flush();
