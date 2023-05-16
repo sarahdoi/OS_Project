@@ -50,14 +50,15 @@ smallest=frag;}
 }//end loop
 return best;}//end method
 
-public static void deallocate(String pid, Partiton[] p){
+public static void deallocate(String pid, Partition[] p){
 
 boolean found=false;
-for(Partiton partition: p){
-    if(partition.getPid().equals(pid)){
-        partition.setPid("Null");
-        partition.setStatus("Free");
-        partition.setInternalFrag(-1);
+//for(Partition partition: meomry){
+    for(int i=0;i<p.length;i++){
+    if(p[i].getPid().equals(pid)){
+        p[i].setPid("Null");
+        p[i].setStatus("Free");
+        p[i].setInternalFrag(-1);
         found=true;
     }
 }
