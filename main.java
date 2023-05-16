@@ -56,11 +56,11 @@ for(int i=0; i<p.length;i++){
 Partition pp=p[i];
 if(p[i].getStatus().equals("Free")&&pp.getSize()>=processSize){
     return i;}
-return -1;}//end loop
+}//end loop
 return -1;
 }//end method first
 
-        public static int Best(Partition[] p,int processSize){
+  public static int Best(Partition[] p,int processSize){
 int best=-1;
 int smallest=10000000;  //or Integer.max();
 for(int i=0; i<p.length;i++){
