@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.io.*;
-
+import java.util.*;
 public class main {
     //static int memorySize=4;
     public static void main(String[] args) {
@@ -30,28 +30,26 @@ memory[i]=new Partition(partitionSize,sadd,eadd);
 }
  System.out.println("Please enter the allocation approch:[ First-fit (F), Best-fit(B), or Worst-fit (W) ]");
  String approach=input.next();
-
- int selection;
+approach=approach.toUpperCase();
+ int selection=0;
  String pname;
  int pSize;
  do{
+ try{
       System.out.println("Please Select an Option \n[1] Allocate a block of memory\n[2] De-allocate a block memory \n[3] Report details\n[-1] Exit from program");
-     selection=input.nextInt();
-
-
- 
+      selection=input.nextInt();
 
 
      switch(selection){
          case 1: 
-         System.out.println("Please enter a process name");
+         System.out.println("Please enter a process ID");
          pname=input.next();
          System.out.println("Please enter a process size");
          pSize=input.nextInt();
          allocate(memory,pname,pSize,numOfpartitions,approach);
          break;
          case 2:
-         System.out.println("Please enter a process name");
+         System.out.println("Please enter a process ID");
          pname=input.next();
          deallocate(pname,memory);
          break;
@@ -62,7 +60,12 @@ memory[i]=new Partition(partitionSize,sadd,eadd);
          System.out.print("Thank you");
          break;
          default:
-         System.out.print("please select a valid input");
+         System.out.println("please select a valid input");
+     }
+     }
+     catch(InputMismatchException e){
+     input.next();
+     System.out.println("invalid input");
      }
  }
  while(selection!=-1);
@@ -118,6 +121,9 @@ public static void allocate(Partition[] p,String processId,int processSize,int n
 
         
     }
+    else{
+            System.out.println("the process size is larger than any free partition in the memory");
+}
     printing(p);
 }
 
@@ -141,7 +147,6 @@ public static int worstFit(Partition[] p,String processId,int processSize){
     return large;
     }
     else {
-        System.out.println("the process size is larger than any free partition in the memory");
         return -1;
 
     }
