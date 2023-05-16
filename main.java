@@ -22,15 +22,14 @@ if(i==0){
     sadd=0;
 }
 else{
-    sadd=meomry[i-1].getEadd()+1;//if it's not the first process then it will be stored after the ending address
+    sadd=memory[i-1].getEadd()+1;//if it's not the first process then it will be stored after the ending address
 }
 eadd=sadd + partitionSize -1;
 
-meomry[i]=new partition(partitionSize,sadd,eadd);
+memory[i]=new Partition(partitionSize,sadd,eadd);
 }
- System.out.println("Please enter the allocation approch:
- [ First-fit (F), Best-fit(B), or Worst-fit (W) ]");
- String approch=input.next();
+ System.out.println("Please enter the allocation approch:[ First-fit (F), Best-fit(B), or Worst-fit (W) ]");
+ String approach=input.next();
 
        printing();
 	   report(memory);
@@ -38,7 +37,7 @@ meomry[i]=new partition(partitionSize,sadd,eadd);
 
     public static void printing(){
         String pname="[";
-        for(int j=0;j<memorySize;j++){
+        for(int j=0;j<4;j++){
         // if (memory[j].getStatus().equals("Free"))
         // pname=pname+memory[j].getPID()+" | ";
         // else
@@ -57,7 +56,7 @@ meomry[i]=new partition(partitionSize,sadd,eadd);
 		System.out.println("Your memory partitions details : ");
 			
 			
-	     for (int i=0 ; i<m ; i++) { //Loop display each partition details
+	     for (int i=0 ; i<p.length ; i++) { //Loop display each partition details
          System.out.println("Partion " + (i+1) + " :\n");
 		 reportFile.write("Partion " + (i+1) + " :\n");
 		 
@@ -92,19 +91,21 @@ meomry[i]=new partition(partitionSize,sadd,eadd);
 	}//end method report
 
         
-public static int first(Partiton[] p,int processSize){
-for(int i=0; i<Partiton.length;i++){
-p pp=p[i];
-if(pp[i].getStatus.equals("Free")&&pp.getSize()>=processSize){return i;}
+public static int first(Partition[] p,int processSize){
+for(int i=0; i<p.length;i++){
+Partition pp=p[i];
+if(p[i].getStatus().equals("Free")&&pp.getSize()>=processSize){
+    return i;}
 return -1;}//end loop
+return -1;
 }//end method first
 
-        public static int Best(Partiton[] p,int processSize){
+        public static int Best(Partition[] p,int processSize){
 int best=-1;
 int smallest=10000000;  //or Integer.max();
-for(int i=0; i<Partiton.length;i++){
-p pp=p[i];
-if(pp.getStatus.equals("Free")&&pp.getSize()>=processSize){
+for(int i=0; i<p.length;i++){
+Partition pp=p[i];
+if(pp.getStatus().equals("Free")&&pp.getSize()>=processSize){
 int frag=pp.getSize()-processSize;
 if(frag<=smallest){
 best=i;
@@ -127,7 +128,7 @@ boolean found=false;
     }
 }
 if(!found)
-    System.out.println("Process not found!!!!")
+    System.out.println("Process not found!!!!");
 
 } //end method deallocate
 
