@@ -131,9 +131,10 @@ public class main {
       pname = pname.substring(0,pname.length()-1);
       pname = pname + "]";
       System.out.println(pname);
-   }
 
-//end printing method
+   } //end printing method
+
+
    public static void allocate(Partition[] p,String processId,int processSize,int numOfpartitions,String approach){
       boolean full= true;
       boolean notExist =true;
@@ -254,31 +255,38 @@ public class main {
       try {
          BufferedWriter reportFile = new BufferedWriter(new FileWriter("report.txt") );
         
-         System.out.println("Your memory partitions details : ");
-        
+         System.out.println("Memory partitions details : ");
+         reportFile.write("Memory partitions details : " + "\n");
+
+         System.out.println("-------------------------------");
+         reportFile.write("-------------------------------" + "\n");
         
          for (int i=0 ; i<p.length ; i++) { //Loop to display each partition details
-            System.out.println("Partion " + (i+1) + " :\n");
-            reportFile.write("Partion " + (i+1) + " :\n");
+            System.out.println("(Partion " + (i+1) + ")");
+            reportFile.write("(Partion " + (i+1) + ")\n");
          
          
             System.out.println("Status : " + p[i].getStatus() );
-            reportFile.write("Status : " + p[i].getStatus()   );
+            reportFile.write("Status : " + p[i].getStatus() + "\n"  );
          
             System.out.println("Size : " + p[i].getSize()   );
-            reportFile.write("Size : " + p[i].getSize()   );
+            reportFile.write("Size : " + p[i].getSize() + "\n" );
          
             System.out.println("Starting Address : " +  p[i].getSadd() );
-            reportFile.write("Starting Address : " + p[i].getSadd()    );
+            reportFile.write("Starting Address : " + p[i].getSadd()  + "\n"  );
          
             System.out.println("Ending Address : " +  p[i].getEadd() );
-            reportFile.write("Ending Address : " + p[i].getEadd()    );	 
+            reportFile.write("Ending Address : " + p[i].getEadd()  + "\n"  );	 
          
             System.out.println("Process ID : " + p[i].getPid() );
-            reportFile.write("Process ID : " +  p[i].getPid()  );	 
+            reportFile.write("Process ID : " +  p[i].getPid() + "\n" );	 
          
             System.out.println("Internal fragmentation size : " +  p[i].getInternalFrag() );
-            reportFile.write("Internal fragmentation size : " +  p[i].getInternalFrag()   );
+            reportFile.write("Internal fragmentation size : " +  p[i].getInternalFrag() + "\n"  );
+        
+            System.out.println("-------------------------------");
+            reportFile.write("-------------------------------");
+
          
          }//end for
       
