@@ -89,29 +89,66 @@ public class main {
          
          
             switch(selection){
-               case 1: 
-                  System.out.println("Please enter a process ID in \"PN\" format:");
-                  pname=input.next();
-                  if ( !(pname.substring(0,1).equalsIgnoreCase("P") ) )
-                  throw new invalid();
-                  for ( int i=1 ; i<pname.length() ;i++)
-                  if(!(Character.isDigit(pname.charAt(i)) ) )
-                  throw new invalid();
-                  pname.replace(pname.substring(0,1) ,"P"); //unify format with P (uppercase)
-                  System.out.println("Please enter a process size");
-                  pSize=input.nextInt();
-                  allocate(memory,pname,pSize,numOfpartitions,approach);
+
+
+               case 1:
+                  boolean enter=true;
+                  while(enter){
+                     try{
+                        System.out.println("Please enter a process ID in \"PN\" format:");
+                        pname=input.next();
+                        if (pname.length()<=1 )
+                           throw new invalid();
+                        else{
+                           if ( !(pname.substring(0,1).equalsIgnoreCase("P") ) )
+                              throw new invalid();
+                           for ( int i=1 ; i<pname.length() ;i++)
+                              if(!(Character.isDigit(pname.charAt(i)) ) )
+                                 throw new invalid();
+                        
+                        
+                            pname = pname.toUpperCase();//unify format with P (uppercase)
+                           System.out.println("Please enter a process size");
+                           pSize=input.nextInt();
+                           enter=false;
+                           allocate(memory,pname,pSize,numOfpartitions,approach);
+                        }
+                     }catch(invalid e){
+                     // input.next();
+                        System.out.println("invalid processID (PN) format input, Please try again.");
+                     }    
+                     catch(InputMismatchException e){
+                        input.next();
+                        System.out.println("invalid selection input, Please try again.");
+                     }}
                   break;
                case 2:
-                  System.out.println("Please enter a process ID");
-                  pname=input.next();
-                  if ( !(pname.substring(0,1).equalsIgnoreCase("P") ) ) 
-                  throw new invalid();
-                  for ( int i=1 ; i<pname.length() ;i++)
-                  if(!(Character.isDigit(pname.charAt(i)) ) )
-                  throw new invalid();
-                  pname.replace(pname.substring(0,1) ,"P"); //unify format with P (uppercase)
-                  deallocate(pname,memory);
+                  boolean enter1=true;
+                  while(enter1){
+                     try{
+                        System.out.println("Please enter a process ID");
+                        pname=input.next();
+                        if (pname.length()<=1 )
+                           throw new invalid();
+                        else{
+                           if ( !(pname.substring(0,1).equalsIgnoreCase("P") ) ) 
+                              throw new invalid();
+                           for ( int i=1 ; i<pname.length() ;i++)
+                              if(!(Character.isDigit(pname.charAt(i)) ) )
+                                 throw new invalid();
+                                 pname = pname.toUpperCase();//unify format with P (uppercase)
+                           deallocate(pname,memory);
+                           enter1=false;}
+                     }catch(invalid e){
+                     // input.next();
+                        System.out.println("invalid processID (PN) format input, Please try again.");
+                     }    
+                     catch(InputMismatchException e){
+                        input.next();
+                        System.out.println("invalid selection input, Please try again.");
+                     }}
+
+
                   break;
                case 3:
                   report(memory);
