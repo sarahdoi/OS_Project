@@ -11,7 +11,7 @@ public class main {
    
       int sadd,eadd,numOfpartitions=0;
    
-   //validation 1
+   //Number of Parition validation(1)
       boolean e1=true,e2=true,e3=true,e4=true;
       while(e1){
          try{
@@ -21,21 +21,25 @@ public class main {
                throw new invalid();
             e1=false;
          }catch(invalid e){
-            System.out.println("invalid input");
+            System.out.println("invalid number input, Please try again");
          }
          catch(InputMismatchException  e){
             String str=input.next();
-            System.out.println("invalid input");}
+            System.out.println("invalid input, Please enter numbers only.");}
       }//end while
    
       Partition[] memory = new Partition[numOfpartitions];
       int partitionSize=0;
-   //validation 2
+   //PartionSize validation(2)
       for(int i=0;i<numOfpartitions;i++){
-      
-         System.out.println("Please enter the size of partition : "+(i+1)+" in KB");
+        e2=true;
+         while(e2){
+         try { 
+         System.out.println("Please enter the size of partition "+(i+1)+" in KB :");
          partitionSize=input.nextInt();
-      
+         if (partitionSize<=0)
+         throw new invalid();
+         e2=false;
          if(i==0){
             sadd=0;
          }
@@ -45,11 +49,18 @@ public class main {
          eadd=sadd + partitionSize -1;
       
          memory[i]=new Partition(partitionSize,sadd,eadd);
-      }
+         }catch(invalid e){
+            System.out.println("invalid size input, Please try again");
+         }
+         catch(InputMismatchException e){
+            input.next();
+            System.out.println("invalid size type input, Please enter numbers only.");
+         }
+      } //end while2
+    }//end loop
    
-   
-      String approach="";
-   //validation 3
+    String approach="";
+   //ApproachInput Validation(3)
       while(e3){
          try{
             System.out.println("Please enter the allocation approch:[ First-fit (F), Best-fit(B), or Worst-fit (W) ]");
@@ -59,7 +70,11 @@ public class main {
                throw new invalid();
             e3=false;
          }catch(invalid e){
-            System.out.println("invalid input");
+            System.out.println("invalid selection input, Please try again.");
+         }
+         catch(InputMismatchException e){
+            input.next();
+            System.out.println("invalid type input, Please enter characters only.");
          }
       }//end while
    
@@ -97,7 +112,7 @@ public class main {
          }
          catch(InputMismatchException e){
             input.next();
-            System.out.println("invalid input");
+            System.out.println("invalid selection input, Please try again.");
          }
       }
       while(selection!=-1);
