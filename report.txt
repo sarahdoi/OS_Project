@@ -1,17 +1,18 @@
 Memory partitions details : 
 -------------------------------
-(Partion 1 )
+(Partion 1)
 Status : Allocated
-Size : 1
+Size : 2
 Starting Address : 0
-Ending Address : 0
+Ending Address : 1
 Process ID : 1
 Internal fragmentation size : 0
--------------------------------(Partion 2 )
+-------------------------------
+(Partion 2)
 Status : Allocated
-Size : 1
-Starting Address : 1
-Ending Address : 1
+Size : 2
+Starting Address : 2
+Ending Address : 3
 Process ID : 2
 Internal fragmentation size : 0
 -------------------------------

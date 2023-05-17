@@ -259,11 +259,11 @@ public class main {
          reportFile.write("Memory partitions details : " + "\n");
 
          System.out.println("-------------------------------");
-         reportFile.write("-------------------------------" + "\n");
+         reportFile.write("-------------------------------" );
         
          for (int i=0 ; i<p.length ; i++) { //Loop to display each partition details
             System.out.println("(Partion " + (i+1) + ")");
-            reportFile.write("(Partion " + (i+1) + ")\n");
+            reportFile.write("\n(Partion " + (i+1) + ")\n");
          
          
             System.out.println("Status : " + p[i].getStatus() );
