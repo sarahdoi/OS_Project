@@ -47,7 +47,7 @@ public class main {
          else{
             sadd=memory[i-1].getEadd()+1;//if it's not the first process then it will be stored after the ending address
          }
-         eadd=sadd + partitionSize -1;
+         eadd=sadd + partitionSize;//-1;
       
          memory[i]=new Partition(partitionSize,sadd,eadd);
          }catch(invalid e){
