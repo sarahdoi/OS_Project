@@ -233,26 +233,29 @@ public class main {
    }
 
    public static int worstFit(Partition[] p,String processId,int processSize){
-      int large =0;
-      boolean found=false;
-      while(p[large].getStatus().equalsIgnoreCase("allocated")){
-         large++;
-      }
-      for(int k=large+1;k<p.length;k++)
-      {
-         if(p[k].getStatus().equalsIgnoreCase("Free"))
-            if(p[large].getSize()<p[k].getSize()&& p[k].getSize()>=processSize)
-               large=k;
-         found=true;
-      }
-      if(found && p[large].getSize()>=processSize){
-         return large;
-      }
-      else {
-         return -1;
-      
-      }
-   }
+    int k =0;
+    int large =0;
+  boolean found=false;
+  while(p[large].getStatus().equalsIgnoreCase("allocated")){
+  large++;
+  }
+  for( k=large+1;k<p.length;k++)
+  {
+  if(p[k].getStatus().equalsIgnoreCase("Free"))
+  if(p[large].getSize()<p[k].getSize()&& p[k].getSize()>=processSize){
+  large=k;
+  found=true;}
+  }
+
+   if((p[large].getSize()>=processSize&&p[large].getStatus().equalsIgnoreCase("Free"))||found){
+  return large;
+  }
+  else {
+      return -1;
+
+  }
+}
+
 
    
 
