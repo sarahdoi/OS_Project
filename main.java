@@ -33,34 +33,34 @@ public class main {
       int partitionSize=0;
    //PartionSize validation(2)
       for(int i=0;i<numOfpartitions;i++){
-        e2=true;
+         e2=true;
          while(e2){
-         try { 
-         System.out.println("Please enter the size of partition "+(i+1)+" in KB :");
-         partitionSize=input.nextInt();
-         if (partitionSize<=0)
-         throw new invalid();
-         e2=false;
-         if(i==0){
-            sadd=0;
-         }
-         else{
-            sadd=memory[i-1].getEadd()+1;//if it's not the first process then it will be stored after the ending address
-         }
-         eadd=sadd + partitionSize -1;
-      
-         memory[i]=new Partition(partitionSize,sadd,eadd);
-         }catch(invalid e){
-            System.out.println("invalid size input, Please try again");
-         }
-         catch(InputMismatchException e){
-            input.next();
-            System.out.println("invalid size type input, Please enter numbers only.");
-         }
-      } //end while2
-    }//end loop
+            try { 
+               System.out.println("Please enter the size of partition "+(i+1)+" in KB :");
+               partitionSize=input.nextInt();
+               if (partitionSize<=0)
+                  throw new invalid();
+               e2=false;
+               if(i==0){
+                  sadd=0;
+               }
+               else{
+                  sadd=memory[i-1].getEadd()+1;//if it's not the first process then it will be stored after the ending address
+               }
+               eadd=sadd + partitionSize -1;
+            
+               memory[i]=new Partition(partitionSize,sadd,eadd);
+            }catch(invalid e){
+               System.out.println("invalid size input, Please try again");
+            }
+            catch(InputMismatchException e){
+               input.next();
+               System.out.println("invalid size type input, Please enter numbers only.");
+            }
+         } //end while2
+      }//end loop
    
-    String approach="";
+      String approach="";
    //ApproachInput Validation(3)
       while(e3){
          try{
@@ -89,6 +89,64 @@ public class main {
          
          
             switch(selection){
+<<<<<<< HEAD
+               case 1:
+                  boolean enter=true;
+                  while(enter){
+                     try{
+                        System.out.println("Please enter a process ID in \"PN\" format:");
+                        pname=input.next();
+                        if (pname.length()<=1 )
+                           throw new invalid();
+                        else{
+                           if ( !(pname.substring(0,1).equalsIgnoreCase("P") ) )
+                              throw new invalid();
+                           for ( int i=1 ; i<pname.length() ;i++)
+                              if(!(Character.isDigit(pname.charAt(i)) ) )
+                                 throw new invalid();
+                        
+                        
+                           pname.replace(pname.substring(0,1) ,"P"); //unify format with P (uppercase)
+                           System.out.println("Please enter a process size");
+                           pSize=input.nextInt();
+                           enter=false;
+                           allocate(memory,pname,pSize,numOfpartitions,approach);
+                        }
+                     }catch(invalid e){
+                     // input.next();
+                        System.out.println("invalid processID (PN) format input, Please try again.");
+                     }    
+                     catch(InputMismatchException e){
+                        input.next();
+                        System.out.println("invalid selection input, Please try again.");
+                     }}
+                  break;
+               case 2:
+                  boolean enter1=true;
+                  while(enter1){
+                     try{
+                        System.out.println("Please enter a process ID");
+                        pname=input.next();
+                        if (pname.length()<=1 )
+                           throw new invalid();
+                        else{
+                           if ( !(pname.substring(0,1).equalsIgnoreCase("P") ) ) 
+                              throw new invalid();
+                           for ( int i=1 ; i<pname.length() ;i++)
+                              if(!(Character.isDigit(pname.charAt(i)) ) )
+                                 throw new invalid();
+                           pname.replace(pname.substring(0,1) ,"P"); //unify format with P (uppercase)
+                           deallocate(pname,memory);
+                           enter1=false;}
+                     }catch(invalid e){
+                     // input.next();
+                        System.out.println("invalid processID (PN) format input, Please try again.");
+                     }    
+                     catch(InputMismatchException e){
+                        input.next();
+                        System.out.println("invalid selection input, Please try again.");
+                     }}
+=======
                case 1: 
                   System.out.println("Please enter a process ID in \"PN\" format:");
                   pname=input.next();
@@ -97,7 +155,7 @@ public class main {
                   for ( int i=1 ; i<pname.length() ;i++)
                   if(!(Character.isDigit(pname.charAt(i)) ) )
                   throw new invalid();
-                  pname.replace(pname.substring(0,1) ,"P"); //unify format with P (uppercase)
+                  pname = pname.toUpperCase();//unify format with P (uppercase)
                   System.out.println("Please enter a process size");
                   pSize=input.nextInt();
                   allocate(memory,pname,pSize,numOfpartitions,approach);
@@ -110,8 +168,9 @@ public class main {
                   for ( int i=1 ; i<pname.length() ;i++)
                   if(!(Character.isDigit(pname.charAt(i)) ) )
                   throw new invalid();
-                  pname.replace(pname.substring(0,1) ,"P"); //unify format with P (uppercase)
+                  pname = pname.toUpperCase();//unify format with P (uppercase)
                   deallocate(pname,memory);
+>>>>>>> 0cef81b645c66987c416ab5b8c96ffd803c02b6e
                   break;
                case 3:
                   report(memory);
@@ -122,15 +181,15 @@ public class main {
                default:
                   System.out.println("please select a valid input");
             }
-        }catch(invalid e){
+         }catch(invalid e){
            // input.next();
             System.out.println("invalid processID (PN) format input, Please try again.");
          }    
          catch(InputMismatchException e){
             input.next();
             System.out.println("invalid selection input, Please try again.");
-      }
-    } while(selection!=-1);
+         }
+      } while(selection!=-1);
     
    } //end main
 
@@ -146,7 +205,7 @@ public class main {
       pname = pname.substring(0,pname.length()-1);
       pname = pname + "]";
       System.out.println(pname);
-
+   
    } //end printing method
 
 
@@ -272,7 +331,7 @@ public class main {
         
          System.out.println("Memory partitions details : ");
          reportFile.write("Memory partitions details : " + "\n");
-
+      
          System.out.println("-------------------------------");
          reportFile.write("-------------------------------" );
         
@@ -298,10 +357,10 @@ public class main {
          
             System.out.println("Internal fragmentation size : " +  p[i].getInternalFrag() );
             reportFile.write("Internal fragmentation size : " +  p[i].getInternalFrag() + "\n"  );
-        
+         
             System.out.println("-------------------------------");
             reportFile.write("-------------------------------");
-
+         
          
          }//end for
       
