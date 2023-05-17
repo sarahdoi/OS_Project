@@ -8,6 +8,7 @@ public Partition(int size, int sadd, int eadd){
 
 Size=size;
 Sadd=sadd;
+
 Eadd=eadd;
 InternalFrag=-1;//intilize since it won't be given by the user
 Pid="NULL";//intilize since it won't be given by the user

@@ -123,11 +123,13 @@ public class main {
       String pname="[";
       for(int j=0;j<p.length;j++){
          if (p[j].getStatus().equalsIgnoreCase("allocated"))
-            pname=pname+p[j].getPid()+" | ";
+            pname=pname+p[j].getPid()+"|";
          else
-            pname=pname+"H | ";
+            pname=pname+"H|";
       }
-      pname=pname+"]";
+     
+      pname = pname.substring(0,pname.length()-1);
+      pname = pname + "]";
       System.out.println(pname);
    }
 
