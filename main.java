@@ -196,11 +196,11 @@ public class main {
             full=false;
          }
       if(full)
-         System.out.print("The memory is full");
+         System.out.println("The memory is full");
       else{
          for(int j=0;j<numOfpartitions;j++)
             if(p[j].getPid().equals(processId)){
-               System.out.print("This process is already exist");
+               System.out.println("This process is already exist");
                notExist=false;
             }
          if(notExist){
