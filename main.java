@@ -97,7 +97,7 @@ public class main {
                   for ( int i=1 ; i<pname.length() ;i++)
                   if(!(Character.isDigit(pname.charAt(i)) ) )
                   throw new invalid();
-                  pname.replace(pname.substring(0,1) ,"P"); //unify format with P (uppercase)
+                  pname = pname.toUpperCase();//unify format with P (uppercase)
                   System.out.println("Please enter a process size");
                   pSize=input.nextInt();
                   allocate(memory,pname,pSize,numOfpartitions,approach);
@@ -110,7 +110,7 @@ public class main {
                   for ( int i=1 ; i<pname.length() ;i++)
                   if(!(Character.isDigit(pname.charAt(i)) ) )
                   throw new invalid();
-                  pname.replace(pname.substring(0,1) ,"P"); //unify format with P (uppercase)
+                  pname = pname.toUpperCase();//unify format with P (uppercase)
                   deallocate(pname,memory);
                   break;
                case 3:
