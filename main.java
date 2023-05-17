@@ -21,6 +21,7 @@ public class main {
                throw new invalid();
             e1=false;
          }catch(invalid e){
+            //String str=input.next();
             System.out.println("invalid number input, Please try again");
          }
          catch(InputMismatchException  e){
@@ -89,8 +90,14 @@ public class main {
          
             switch(selection){
                case 1: 
-                  System.out.println("Please enter a process ID");
+                  System.out.println("Please enter a process ID in \"PN\" format:");
                   pname=input.next();
+                  if ( !(pname.substring(0,1).equalsIgnoreCase("P") ) )
+                  throw new invalid();
+                  for ( int i=1 ; i<pname.length() ;i++)
+                  if(!(Character.isDigit(pname.charAt(i)) ) )
+                  throw new invalid();
+                  pname.substring(0,1).toUpperCase(); //unify format
                   System.out.println("Please enter a process size");
                   pSize=input.nextInt();
                   allocate(memory,pname,pSize,numOfpartitions,approach);
@@ -98,6 +105,12 @@ public class main {
                case 2:
                   System.out.println("Please enter a process ID");
                   pname=input.next();
+                  if ( !(pname.substring(0,1).equalsIgnoreCase("P") ) ) 
+                  throw new invalid();
+                  for ( int i=1 ; i<pname.length() ;i++)
+                  if(!(Character.isDigit(pname.charAt(i)) ) )
+                  throw new invalid();
+                  pname.substring(0,1).toUpperCase(); //unify format
                   deallocate(pname,memory);
                   break;
                case 3:
@@ -109,13 +122,15 @@ public class main {
                default:
                   System.out.println("please select a valid input");
             }
-         }
+        }catch(invalid e){
+           // input.next();
+            System.out.println("invalid processID (PN) format input, Please try again.");
+         }    
          catch(InputMismatchException e){
             input.next();
             System.out.println("invalid selection input, Please try again.");
-         }
       }
-      while(selection!=-1);
+    } while(selection!=-1);
     
    } //end main
 
@@ -245,7 +260,7 @@ public class main {
          }
       }
       if(!found)
-         System.out.println("Process not found!!!!");
+         System.out.println("Process not found!");
       printing(p);
    } //end method deallocate
 
