@@ -170,7 +170,7 @@ public class main {
       }catch(InputMismatchException e){
       input.next();
       System.out.println("invalid selection input, Please try again.");   }
-      } while(selection!=-1);
+      } while(selection!=4);
     
    } //end main
 
