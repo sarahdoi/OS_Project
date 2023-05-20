@@ -68,7 +68,7 @@ public class main {
    //ApproachInput Validation(3)
       while(e3){
          try{
-            System.out.println("Please enter the allocation approch:[ First-fit (F), Best-fit(B), or Worst-fit (W) ]");
+            System.out.println("Please enter the allocation approach:[ First-fit (F), Best-fit(B), or Worst-fit (W) ]");
             approach=input.next();
             approach=approach.toUpperCase();
             if(!(approach.equals("F")||approach.equals("B")||approach.equals("W")))
@@ -88,7 +88,7 @@ public class main {
       int pSize;
       do{
          try{
-         System.out.println("Please Select an Option \n[1] Allocate a block of memory\n[2] De-allocate a block memory \n[3] Report details\n[4] Exit from program");
+         System.out.println("Please Select an Option \n[1] Allocate a block of memory\n[2] De-allocate a block of memory \n[3] Report details\n[4] Exit from program");
          selection=input.nextInt();
           switch(selection){
 
